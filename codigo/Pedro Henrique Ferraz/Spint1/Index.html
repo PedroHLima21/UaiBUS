@@ -9,36 +9,53 @@
 </head>
 <body>
 
-    <!--Cabecalho-->
+    <!--Cabeçalho-->
     <div class="cabecalho">
-    <h1>Notícias Uai<span>B</span>us <span class="B">B</span><span class="H">H</span></h1>
-    <p class="trecho">"Notícias sobre o trânsito e acidentes da capital mineira."</p>
-    <img src="UaibusBh.png" alt="Notícias UaiBusBH" class="logo">
+        <h1>Notícias Uai<span>B</span>us <span class="B">B</span><span class="H">H</span></h1>
+        <p class="trecho">"Notícias sobre o trânsito e acidentes da capital mineira."</p>
+        <img src="logouaibus.png" alt="Notícias UaiBusBH" class="logo">
+        <br>
+        <br>
+        <a href="/codigo/miguel-nascimento/index.html">Rotas</a>
+        <br>
+        <a href="/codigo/Pedro Henrique Ferraz/Sprint2/">Calendario</a>
     </div>
+
     <!--Meio da Página-->
     <div class="container-meio">
-    <div class="meio">
-      <blockquote class="bloco"> <h2>Preferências</h2> <br>
-        <p><span>UaiBusBH</span> prioriza suas preferências de notícias.</p> 
-      </blockquote>
+        <div class="meio">
+            <blockquote class="bloco">
+                <h2>Preferências</h2> 
+                <p><span>UaiBusBH</span> prioriza suas preferências de notícias.</p> 
+            </blockquote>
+        </div>
+
+        <!--Preferências-->
+        <div class="preferencia">
+            <input type="checkbox" name="acidentes" id="acidentes" value="acidentes">
+            <label for="acidentes">Acidentes</label>
+
+            <input type="checkbox" name="politicas" id="politicas" value="politicas">
+            <label for="politicas">Políticas</label> 
+
+            <input type="checkbox" name="transito" id="transito" value="trânsito">
+            <label for="transito">Trânsito</label>
+
+            <input type="checkbox" name="nada" id="nada" value="nada">
+            <label for="nada">Nenhuma</label>
+
+            <button class="Botao">Enviar</button>
+        </div>
     </div>
-    <!--Preferências-->
-    <div class="preferencia">
-        <input type="checkbox" name="acidentes" id="acidentes" value="acidentes">
-        <label class="acidentes" for="acidentes">Acidentes</label>
-        <input type="checkbox" name="politicas" id="politicas" value="politicas">
-        <label for="politicas">Politicas</label> 
-        <input type="checkbox" name="trânsito" id="trânsito" value="trânsito">
-        <label for="trânsito">Trânsito</label>
-        <input type="checkbox" name="Nada" id="Nada" value="Nada">
-        <label for="Nada">Nenhuma</label>
-        <button class="Botao">Enviar</button>
-    </div>
+    <div class="container-botoes">
+      <button class="desativar-noticias">Desativar Notícias</button>
   </div>
+
     <!--Rodapé-->
     <div class="rodape">
         <p>Desenvolvido por UaiBusBH</p>
     </div>
 
+    <script src="script.js"></script>
 </body>
 </html>
