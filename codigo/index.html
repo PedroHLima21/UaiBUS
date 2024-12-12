@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avaliação de Transporte Público</title>
+  <style>
+    
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background: url('jpg/cidade.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: inherit;
+      filter: blur(8px);
+      z-index: -1;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 400px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    label, input, textarea, button {
+      width: 100%;
+      margin: 5px 0;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    button {
+      margin-top: 10px;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    a {
+      display: block;
+      margin-top: 15px;
+      text-decoration: none;
+      color: #007bff;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Avaliação do Transporte Público</h2>
+    <form id="form-avaliacao">
+      <label for="transporte">Nome do Transporte:</label>
+      <input type="text" id="transporte" placeholder="Ex: Ônibus, Metrô, VLT" required>
+
+      <label for="linha">Linha de Transporte:</label>
+      <input type="text" id="linha" placeholder="Ex: 345A" required>
+
+      <label for="nota">Nota (1 a 5 estrelas):</label>
+      <input type="number" id="nota" min="1" max="5" placeholder="Ex: 4" required>
+
+      <label for="comentario">Comentário:</label>
+      <textarea id="comentario" rows="4" placeholder="Escreva seu comentário..." required></textarea>
+
+      <button type="button" onclick="adicionarAvaliacao()">Enviar Avaliação</button>
+    </form>
+
+    <a href="comentarios.html">Ver Comentários</a>
+  </div>
+
+  <script>
+    function adicionarAvaliacao() {
+      const transporte = document.getElementById("transporte").value;
+      const linha = document.getElementById("linha").value;
+      const nota = document.getElementById("nota").value;
+      const comentario = document.getElementById("comentario").value;
+
+      if (!transporte || !linha || !nota || !comentario) {
+        alert("Preencha todos os campos!");
+        return;
+      }
+
+      const avaliacao = {
+        transporte,
+        linha,
+        nota,
+        comentario
+      };
+
+      let avaliacoes = JSON.parse(localStorage.getItem("avaliacoes")) || [];
+      avaliacoes.push(avaliacao);
+      localStorage.setItem("avaliacoes", JSON.stringify(avaliacoes));
+
+      alert("Avaliação adicionada com sucesso!");
+      document.getElementById("form-avaliacao").reset();
+    }
+  </script>
+
+</body>
+</html>

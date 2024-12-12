@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roteador com Google Maps</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5aGRRqROd4bZ4cJsJgbBJYocv93Nc6ZM&libraries=places"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logouaibus.png" alt="Logo">
+            <h1>Mapa de Rotas</h1>
+        </div>
+    </header>
+
+    <main>
+        <aside>
+            <label for="start">Local de Partida:</label>
+            <input type="text" id="start" placeholder="Digite o local de partida">
+            
+            <label for="end">Local de Chegada:</label>
+            <input type="text" id="end" placeholder="Digite o local de chegada">
+            
+            <label for="mode">Modo de Transporte:</label>
+            <select id="mode">
+                <option value="DRIVING">Carro</option>
+                <option value="TRANSIT">Ônibus</option>
+                <option value="WALKING">A pé</option>
+                <option value="BICYCLING">Bicicleta</option>
+            </select>
+        
+            <button onclick="calculateRoute()">Calcular Rota</button>
+            <button onclick="saveRoute()">Salvar Rota</button>
+        
+            <label for="savedRoutes">Rotas Salvas:</label>
+            <select id="savedRoutes" onchange="useSavedRoute()">
+                <option value="">Selecione uma rota</option>
+            </select>
+        
+            <button onclick="editRoute()">Editar Rota</button>
+            <button onclick="deleteRoute()">Excluir Rota</button>
+        </aside>
+        
+        
+        <section>
+            <div id="map"></div>
+            <div id="details"></div>
+        </section>
+    </main>
+</body>
+</html>

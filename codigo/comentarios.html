@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comentários de Transporte</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background: url('jpg/cidade.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: inherit;
+      filter: blur(8px);
+      z-index: -1;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 500px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    .avaliacao-item {
+      margin: 10px 0;
+      padding: 10px;
+      background-color: #eef3f7;
+      border-radius: 5px;
+      position: relative;
+    }
+
+    .stars {
+      color: gold;
+      font-size: 18px;
+    }
+
+    .delete-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .delete-btn:hover {
+      background-color: #cc0000;
+    }
+
+    a {
+      text-decoration: none;
+      color: #007bff;
+      display: block;
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Comentários</h2>
+    <div id="comentariosList"></div>
+    <a href="index.html">Voltar para Avaliação</a>
+  </div>
+
+  <script>
+    function carregarAvaliacoes() {
+      const comentariosList = document.getElementById("comentariosList");
+      const avaliacoes = JSON.parse(localStorage.getItem("avaliacoes")) || [];
+
+      comentariosList.innerHTML = "";
+
+      if (avaliacoes.length === 0) {
+        comentariosList.innerHTML = "<p>Nenhuma avaliação encontrada.</p>";
+        return;
+      }
+
+      avaliacoes.forEach((avaliacao, index) => {
+        const item = document.createElement("div");
+        item.classList.add("avaliacao-item");
+
+        const estrelas = '★'.repeat(avaliacao.nota) + '☆'.repeat(5 - avaliacao.nota);
+
+        item.innerHTML = `
+          <strong>Transporte:</strong> ${avaliacao.transporte}<br>
+          <strong>Linha:</strong> ${avaliacao.linha}<br>
+          <strong>Nota:</strong> <span class="stars">${estrelas}</span><br>
+          <strong>Comentário:</strong> ${avaliacao.comentario}
+          <button class="delete-btn" onclick="apagarAvaliacao(${index})">Apagar</button>
+        `;
+
+        comentariosList.appendChild(item);
+      });
+    }
+
+    function apagarAvaliacao(index) {
+      const avaliacoes = JSON.parse(localStorage.getItem("avaliacoes")) || [];
+      avaliacoes.splice(index, 1);
+      localStorage.setItem("avaliacoes", JSON.stringify(avaliacoes));
+      carregarAvaliacoes();
+    }
+
+    document.addEventListener("DOMContentLoaded", carregarAvaliacoes);
+  </script>
+
+</body>
+</html>
